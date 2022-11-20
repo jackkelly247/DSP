@@ -6,6 +6,7 @@ import functions
 from scipy import signal
 from scipy.io import wavfile
 import librosa
+import math
 
 def frequency_detector(time_loop, freq_loop, amplitudes, time, freq, dB):
     notes = []
@@ -58,15 +59,15 @@ def frequency_time_detector(time_loop, freq_loop, amplitudes, time, freq, dB):
             else:
                 amplitudes[j,i] = 0
     #plotting
-    if 0:
+    if 1:
         plt.figure(figsize=(10,6))
         plt.pcolormesh(time, freq, amplitudes)
         plt.xlabel("Time (sec)"); plt.ylabel("frequency (Hz)")
         plt.title('STFT Channel 1 - present frequencies')
         plt.show()
     # sub plots of timing graphs and longest time a note is present
-    if 1:
-        figure, axis = plt.subplots(4,1)
+    if 0:
+        figure, axis = plt.subplots(math.ceil(len(notes)/3),1)
         notes_time_period = []
         for i in range(0,len(notes)):
             num = 0
